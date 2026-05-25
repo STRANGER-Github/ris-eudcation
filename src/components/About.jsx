@@ -30,19 +30,20 @@ const About = () => {
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to Zentry
+          Discover World International School
         </p>
 
         <AnimatedTitle
-          title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
+          title="Your gl<b>o</b>bal learning journey starts here"
           containerClass="mt-5 !text-black text-center"
         />
 
         <div className="about-subtext">
-          <p>The Game of Games begins—your life, now an epic MMORPG</p>
+          <p>Excellence begins where your child’s inspiring journey starts.
+          </p>
           <p className="text-gray-500">
-            Zentry unites every player from countless games and platforms, both
-            digital and physical, into a unified Play Economy
+            Rahul International School unites educators, modern facilities, and values into a
+            unified academic and personal learning experience
           </p>
         </div>
       </div>
@@ -50,7 +51,7 @@ const About = () => {
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
           <img
-            src="img/about.webp"
+            src="img/about-ris.png"
             alt="Background"
             className="absolute left-0 top-0 size-full object-cover"
           />

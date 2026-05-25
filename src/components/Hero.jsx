@@ -141,22 +141,24 @@ const Hero = () => {
         </div>
 
         <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75">
-          G<b>A</b>MING
+          {/* G<b>A</b>MING */}
+          EX<b>C</b>ELLENCE
         </h1>
 
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="special-font hero-heading text-blue-100">
-              redefi<b>n</b>e
+            <h1 className="special-font uppercase font-zentry font-black text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.85] text-blue-100">
+              WELCOME TO RA<b>H</b>UL <br/> INTER<b>N</b>ATIONAL <br/> S<b>C</b>HOOL
             </h1>
 
-            <p className="mb-5 max-w-64 font-robert-regular text-blue-100">
-              Enter the Metagame Layer <br /> Unleash the Play Economy
+            <p className="mb-5 max-w-70 font-robert-regular text-blue-100">
+              Empowering students through holistic, innovative, <br /> 
+              future focused educational experiences.
             </p>
 
             <Button
               id="watch-trailer"
-              title="Watch trailer"
+              title="Enroll Now"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-yellow-300 flex-center gap-1"
             />
@@ -165,7 +167,7 @@ const Hero = () => {
       </div>
 
       <h1 className="special-font hero-heading absolute bottom-5 right-5 text-black">
-        G<b>A</b>MING
+        EX<b>C</b>ELLENCE
       </h1>
     </div>
   );
