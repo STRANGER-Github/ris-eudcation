@@ -1,11 +1,24 @@
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { BentoTilt } from "./Features";
 
 import Button from "./Button";
 import AnimatedTitle from "./AnimatedTitle";
 
 const FloatingImage = () => {
   const frameRef = useRef(null);
+  const cardRef = useRef(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [hoverOpacity, setHoverOpacity] = useState(0);
+
+  const handleCardMouseMove = (event) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setCursorPosition({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    });
+  };
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -49,74 +62,68 @@ const FloatingImage = () => {
     <div id="story" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="flex size-full flex-col items-center py-10 pb-24">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          the multiversal ip world
+          holistic learning
         </p>
 
         <div className="relative size-full">
           <AnimatedTitle
-            title="the st<b>o</b>ry of <br /> a hidden real<b>m</b>"
+            title="O<b>u</b>r 6 Sig<b>m</b>a <br /> Appr<b>o</b>ach"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
           />
 
-          <div className="story-img-container">
-            <div className="story-img-mask">
-              <div className="story-img-content">
-                <img
-                  ref={frameRef}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseLeave}
-                  onMouseEnter={handleMouseLeave}
-                  src="/img/entrance.webp"
-                  alt="entrance.webp"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-
-            {/* for the rounded corner */}
-            <svg
-              className="invisible absolute size-0"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <filter id="flt_tag">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="8"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="flt_tag"
-                  />
-                  <feComposite
-                    in="SourceGraphic"
-                    in2="flt_tag"
-                    operator="atop"
-                  />
-                </filter>
-              </defs>
-            </svg>
+          <div className="relative flex w-full justify-center mt-10 md:mt-12">
+            <img
+              ref={frameRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              onMouseUp={handleMouseLeave}
+              onMouseEnter={handleMouseLeave}
+              src="/videos/6-sigma-approch.webp"
+              alt="6 Sigma Approach"
+              className="max-h-[50vh] md:max-h-[60vh] object-contain relative z-20"
+            />
           </div>
         </div>
 
-        <div className="-mt-80 flex w-full justify-center md:-mt-64 md:me-44 md:justify-end">
-          <div className="flex h-full w-fit flex-col items-center md:items-start">
-            <p className="mt-3 max-w-sm text-center font-circular-web text-violet-50 md:text-start">
-              Where realms converge, lies Zentry and the boundless pillar.
-              Discover its secrets and shape your fate amidst infinite
-              opportunities.
-            </p>
+        <div className="mt-10 flex w-full justify-center px-4 md:px-10">
+          <BentoTilt className="w-full max-w-4xl">
+            <div
+              ref={cardRef}
+              onMouseMove={handleCardMouseMove}
+              onMouseEnter={() => setHoverOpacity(1)}
+              onMouseLeave={() => setHoverOpacity(0)}
+              className="relative flex w-full flex-col items-center overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-md md:p-12 cursor-pointer"
+            >
 
-            <Button
-              id="realm-btn"
-              title="discover prologue"
-              containerClass="mt-5"
-            />
-          </div>
+              {/* Custom Hover Cursor Glow */}
+              <div
+                className="pointer-events-none absolute -inset-px transition duration-300 z-0"
+                style={{
+                  opacity: hoverOpacity,
+                  background: `radial-gradient(400px circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(93, 63, 211, 0.4), transparent 40%)`,
+                }}
+              />
+
+              {/* Subtle glowing orbs for premium feel */}
+              <div className="pointer-events-none absolute -left-1/4 -top-1/4 h-[50%] w-[50%] rounded-full bg-violet-600/20 blur-[80px]" />
+              <div className="pointer-events-none absolute -bottom-1/4 -right-1/4 h-[50%] w-[50%] rounded-full bg-blue-600/20 blur-[80px]" />
+
+              <div className="relative z-10 flex flex-col items-center">
+                <p className="mb-6 text-center font-circular-web text-lg leading-relaxed text-blue-50 md:text-xl">
+                  At RIS, we advocate a well-rounded and holistic curriculum that encourages our learners to have a multi-faceted learning experience.
+                </p>
+                <p className="mb-10 text-center font-circular-web text-lg leading-relaxed text-blue-50/70 md:text-xl">
+                  Our curriculum revolves around our <strong className="font-bold tracking-wider text-white">‘SIX SIGMA’</strong> program that enables our learners in the better understanding and application concepts, while signifying the importance of innovation, compassion, values, health and community.
+                </p>
+
+                <Button
+                  id="realm-btn"
+                  title="explore curriculum"
+                  containerClass="w-full md:w-auto"
+                />
+              </div>
+            </div>
+          </BentoTilt>
         </div>
       </div>
     </div>
