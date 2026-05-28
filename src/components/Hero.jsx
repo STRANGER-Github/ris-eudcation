@@ -16,7 +16,7 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  const totalVideos = 4;
+  const totalVideos = 1;
   const nextVdRef = useRef(null);
 
   const handleVideoLoad = () => {
@@ -24,19 +24,20 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    if (loadedVideos === totalVideos - 1) {
+    if (loadedVideos >= 1) {
       setLoading(false);
     }
   }, [loadedVideos]);
 
   const handleMiniVdClick = () => {
-    setHasClicked(true);
-
-    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+    // setHasClicked(true);
+    // setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
   };
 
   useGSAP(
     () => {
+      // Disabled video transition
+      /*
       if (hasClicked) {
         gsap.set("#next-video", { visibility: "visible" });
         gsap.to("#next-video", {
@@ -55,6 +56,7 @@ const Hero = () => {
           ease: "power1.inOut",
         });
       }
+      */
     },
     {
       dependencies: [currentIndex],
@@ -100,7 +102,8 @@ const Hero = () => {
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+          {/* Mini video preview box disabled */}
+          {/* <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <VideoPreview>
               <div
                 onClick={handleMiniVdClick}
@@ -127,11 +130,11 @@ const Hero = () => {
             id="next-video"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
-          />
+          /> */}
+
+          {/* Main static video */}
           <video
-            src={getVideoSrc(
-              currentIndex === totalVideos - 1 ? 1 : currentIndex
-            )}
+            src={getVideoSrc(1)}
             autoPlay
             loop
             muted
@@ -148,11 +151,11 @@ const Hero = () => {
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
             <h1 className="special-font uppercase font-zentry font-black text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.85] text-blue-100">
-              WELCOME TO RA<b>H</b>UL <br/> INTER<b>N</b>ATIONAL <br/> S<b>C</b>HOOL
+              WELCOME TO RA<b>H</b>UL <br /> INTER<b>N</b>ATIONAL <br /> S<b>C</b>HOOL
             </h1>
 
             <p className="mb-5 max-w-70 font-robert-regular text-blue-100">
-              Empowering students through holistic, innovative, <br /> 
+              Empowering students through holistic, innovative, <br />
               future focused educational experiences.
             </p>
 
