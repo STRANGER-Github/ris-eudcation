@@ -4,7 +4,7 @@ import { FaApple, FaGooglePlay } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="w-screen bg-gradient-to-b from-[#5542ff] to-[#b59cff] pt-16 pb-8 text-black px-6 sm:px-12 md:px-20 lg:px-28">
+    <footer className="w-screen bg-gradient-to-b from-[#5542ff] to-[#b59cff] pt-16 pb-8 text-black px-6 sm:px-12 md:px-20 lg:px-16">
       <div className="flex flex-col md:flex-row justify-between items-start gap-10 w-full">
         {/* Logo and Contact Column */}
         <div className="md:w-1/4 flex flex-col items-start">
@@ -68,40 +68,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Admissions Column */}
-          <div>
-            <span className="font-general text-[11px] uppercase tracking-[0.2em] text-black mb-5 block font-semibold">
-              Admissions
-            </span>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#admission-process"
-                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
-                >
-                  Admission Process
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#admission-criteria"
-                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
-                >
-                  Admission Criteria
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#admission-enquiry"
-                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
-                >
-                  Admission Enquiry
-                </a>
-              </li>
-            </ul>
-
-
-          </div>
 
           {/* Academics Column */}
           <div>
@@ -159,6 +125,42 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
+          {/* Admissions Column */}
+          <div>
+            <span className="font-general text-[11px] uppercase tracking-[0.2em] text-black mb-5 block font-semibold">
+              Admissions
+            </span>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#admission-process"
+                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
+                >
+                  Admission Process
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#admission-criteria"
+                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
+                >
+                  Admission Criteria
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#admission-enquiry"
+                  className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
+                >
+                  Admission Enquiry
+                </a>
+              </li>
+            </ul>
+
+
+          </div>
+
 
           {/* Boards Offered Column */}
           <div>

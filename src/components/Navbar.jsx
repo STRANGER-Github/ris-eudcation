@@ -224,7 +224,7 @@ const NavBar = () => {
     <>
       <div
         ref={navContainerRef}
-        className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+        className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-4"
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex size-full items-center justify-between p-4">
@@ -236,7 +236,7 @@ const NavBar = () => {
                 id="apply-now-button"
                 title="Apply Now"
                 rightIcon={<TiLocationArrow />}
-                containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
+                containerClass="bg-[#dfdff0] md:flex hidden items-center justify-center gap-1"
               />
             </div>
 
@@ -268,7 +268,7 @@ const NavBar = () => {
                         onMouseEnter={(e) => handleMouseEnter(e, index)}
                         className={clsx(
                           "relative ms-6 px-4 py-2 rounded-full font-general text-xs uppercase transition-all duration-300 cursor-pointer inline-flex items-center z-10",
-                          hoveredIndex === index ? "text-black animate-none" : "text-blue-50"
+                          hoveredIndex === index ? "text-black animate-none" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
                         )}
                       >
                         {item.title}
@@ -288,7 +288,7 @@ const NavBar = () => {
                       <button
                         className={clsx(
                           "relative ms-6 px-4 py-2 rounded-full font-general text-xs uppercase transition-all duration-300 cursor-pointer flex items-center gap-1 focus:outline-none z-10",
-                          hoveredIndex === index ? "text-black" : "text-blue-50"
+                          hoveredIndex === index ? "text-black" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium"
                         )}
                       >
                         <span>{item.title}</span>
@@ -581,7 +581,7 @@ const NavBar = () => {
               id="mobile-apply-now"
               title="Apply Now"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-blue-50 flex items-center justify-center gap-1 w-full"
+              containerClass="bg-[#dfdff0] flex items-center justify-center gap-1 w-full"
             />
           </div>
         </div>
