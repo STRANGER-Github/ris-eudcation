@@ -152,6 +152,11 @@ body {
   animation-delay: calc(var(--animation-order) * 0.1s);
 }
 
+@keyframes float-particle {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(calc(-80px + 160px * var(--tx)), calc(-80px + 160px * var(--ty))); }
+}
+
 @keyframes indicator-line {
   0% {
     height: 4px;

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import AnimatedTitle from "./AnimatedTitle";
 
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -34,6 +35,52 @@ export const BentoTilt = ({ children, className = "" }) => {
       style={{ transform: transformStyle }}
     >
       {children}
+    </div>
+  );
+};
+
+const StarParticleSystem = () => {
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    // Generate random stars on client side to avoid hydration mismatch
+    const generatedStars = Array.from({ length: 40 }).map((_, i) => ({
+      id: i,
+      size: Math.random() * 3 + 1,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      tx: Math.random(),
+      ty: Math.random(),
+      delay: Math.random() * 5,
+      duration: Math.random() * 5 + 5,
+    }));
+    setStars(generatedStars);
+  }, []);
+
+  return (
+    <div 
+      className="absolute inset-0 z-10 pointer-events-none overflow-hidden mix-blend-screen"
+      style={{
+        maskImage: 'radial-gradient(ellipse at 50% 50%, transparent 45%, black 70%)',
+        WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, transparent 45%, black 70%)'
+      }}
+    >
+      {stars.map((star) => (
+        <div
+          key={star.id}
+          className="absolute rounded-full bg-white"
+          style={{
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            left: `${star.left}%`,
+            top: `${star.top}%`,
+            '--tx': star.tx,
+            '--ty': star.ty,
+            animation: `float-particle ${star.duration}s ease-in-out infinite alternate ${star.delay}s, pulse-star 3s ease-in-out infinite alternate ${star.delay}s`,
+            boxShadow: '0 0 6px 1px rgba(255, 255, 255, 0.4)',
+          }}
+        />
+      ))}
     </div>
   );
 };
@@ -153,9 +200,10 @@ const Features = () => (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
-        <h2 className="bento-title special-font mb-10 text-5xl md:text-7xl text-blue-50">
-          Why Ch<b>o</b>ose R<b>I</b>S
-        </h2>
+        <AnimatedTitle
+          title="Why Ch<b>o</b>ose R<b>I</b>S"
+          containerClass="bento-title mb-10 !text-5xl md:!text-7xl !text-blue-50 !px-0 sm:!px-0 !items-start"
+        />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-3">
             <h3 className="text-lg font-bold uppercase tracking-widest text-white">Holistic Development</h3>
@@ -223,7 +271,10 @@ const Features = () => (
             {/* Dark gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-            <div className="relative z-10 flex size-full flex-col justify-end p-4 md:p-6 text-blue-50">
+            {/* Premium Animated Stars */}
+            <StarParticleSystem />
+
+            <div className="relative z-20 flex size-full flex-col justify-end p-4 md:p-6 text-blue-50">
               <div className="flex w-full flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                   <h1 className="bento-title special-font mb-2 leading-none">

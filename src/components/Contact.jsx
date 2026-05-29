@@ -1,4 +1,5 @@
 import React from "react";
+import AnimatedTitle from "./AnimatedTitle";
 
 const stats = [
   { value: "23+", label: "AWARDS" },
@@ -60,9 +61,10 @@ const Contact = () => {
 
           {/* Bottom Section: Our Presence */}
           <div className="w-full max-w-[90rem] border-t border-white/10 pt-16 flex flex-col items-center">
-            <h3 className="special-font mb-16 w-full text-center font-zentry text-4xl font-black md:text-5xl tracking-widest">
-              O<b>u</b>r Pres<b>e</b>nce
-            </h3>
+            <AnimatedTitle
+              title="O<b>u</b>r Pres<b>e</b>nce"
+              containerClass="mb-16 w-full text-center !text-4xl md:!text-5xl tracking-widest"
+            />
 
             <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-20 w-full max-w-7xl px-4">
               {cities.map((city, index) => (

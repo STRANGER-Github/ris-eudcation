@@ -34,7 +34,7 @@ const About = () => {
         </p>
 
         <AnimatedTitle
-          title="Your gl<b>o</b>bal learning journey starts here"
+          title="Your gl<b>o</b>bal learning journey <br /> starts here"
           containerClass="mt-5 !text-black text-center"
         />
 
