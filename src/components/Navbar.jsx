@@ -243,7 +243,7 @@ const NavBar = () => {
             {/* Navigation Links and Audio Button */}
             <div className="flex h-full items-center">
               {/* Desktop Navigation Links */}
-              <div 
+              <div
                 className="hidden md:flex items-center h-full relative"
                 onMouseLeave={handleMouseLeave}
               >
@@ -280,23 +280,23 @@ const NavBar = () => {
                   const openLeft = index >= 3;
 
                   return (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className="relative group flex items-center h-full"
                       onMouseEnter={(e) => handleMouseEnter(e, index)}
                     >
-                      <button 
+                      <button
                         className={clsx(
                           "relative ms-6 px-4 py-2 rounded-full font-general text-xs uppercase transition-all duration-300 cursor-pointer flex items-center gap-1 focus:outline-none z-10",
                           hoveredIndex === index ? "text-black" : "text-blue-50"
                         )}
                       >
                         <span>{item.title}</span>
-                        <FiChevronDown 
+                        <FiChevronDown
                           className={clsx(
                             "transition-transform duration-300 group-hover:rotate-180 transition-colors duration-300",
                             hoveredIndex === index ? "text-black" : "text-blue-50"
-                          )} 
+                          )}
                         />
                       </button>
 
