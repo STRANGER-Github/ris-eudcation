@@ -163,6 +163,7 @@ const Hero = () => {
               title="Enroll Now"
               leftIcon={<TiLocationArrow />}
               containerClass="bg-yellow-300 flex-center gap-1"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
             />
           </div>
         </div>

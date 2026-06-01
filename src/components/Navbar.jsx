@@ -237,6 +237,7 @@ const NavBar = () => {
                 title="Apply Now"
                 rightIcon={<TiLocationArrow />}
                 containerClass="bg-[#dfdff0] md:flex hidden items-center justify-center gap-1"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
               />
             </div>
 
@@ -582,6 +583,10 @@ const NavBar = () => {
               title="Apply Now"
               rightIcon={<TiLocationArrow />}
               containerClass="bg-[#dfdff0] flex items-center justify-center gap-1 w-full"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.dispatchEvent(new CustomEvent('open-admission-popup'));
+              }}
             />
           </div>
         </div>
