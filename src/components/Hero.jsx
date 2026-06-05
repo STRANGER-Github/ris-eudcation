@@ -143,17 +143,17 @@ const Hero = () => {
           />
         </div>
 
-        <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75">
+        <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
           ACADEMIC<br />EX<b>C</b>ELLENCE
         </h1>
 
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="special-font uppercase font-zentry font-black text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.85] text-blue-100">
+            <h1 className="special-font uppercase font-zentry font-black text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.85] text-blue-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               WELCOME TO RA<b>H</b>UL <br /> INTER<b>N</b>ATIONAL <br /> S<b>C</b>HOOL
             </h1>
 
-            <p className="mb-5 max-w-70 font-robert-regular text-blue-100">
+            <p className="mb-5 text-xl max-w-70 font-robert-regular text-blue-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] font-semibold">
               Empowering students through holistic, innovative, <br />
               future focused educational experiences.
             </p>
@@ -162,7 +162,7 @@ const Hero = () => {
               id="watch-trailer"
               title="Enroll Now"
               leftIcon={<TiLocationArrow />}
-              containerClass="bg-yellow-300 flex-center gap-1"
+              containerClass="bg-yellow-300 flex-center gap-1 [&>span]:font-bold [&>span]:text-sm"
               onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
             />
           </div>

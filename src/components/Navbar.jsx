@@ -236,7 +236,7 @@ const NavBar = () => {
                 id="apply-now-button"
                 title="Apply Now"
                 rightIcon={<TiLocationArrow />}
-                containerClass="bg-[#dfdff0] md:flex hidden items-center justify-center gap-1"
+                containerClass="bg-[#dfdff0] md:flex hidden items-center justify-center gap-1 [&>span]:font-bold [&>span]:text-sm"
                 onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
               />
             </div>
@@ -268,8 +268,8 @@ const NavBar = () => {
                         href={item.href}
                         onMouseEnter={(e) => handleMouseEnter(e, index)}
                         className={clsx(
-                          "relative ms-6 px-4 py-2 rounded-full font-general text-xs uppercase transition-all duration-300 cursor-pointer inline-flex items-center z-10",
-                          hoveredIndex === index ? "text-black animate-none" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+                          "relative ms-6 px-4 py-2 rounded-full font-general text-sm uppercase transition-all duration-300 cursor-pointer inline-flex items-center z-10",
+                          hoveredIndex === index ? "text-black animate-none" : (currentScrollY === 0 ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium")
                         )}
                       >
                         {item.title}
@@ -288,15 +288,15 @@ const NavBar = () => {
                     >
                       <button
                         className={clsx(
-                          "relative ms-6 px-4 py-2 rounded-full font-general text-xs uppercase transition-all duration-300 cursor-pointer flex items-center gap-1 focus:outline-none z-10",
-                          hoveredIndex === index ? "text-black" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium"
+                          "relative ms-6 px-4 py-2 rounded-full font-general text-sm uppercase transition-all duration-300 cursor-pointer flex items-center gap-1 focus:outline-none z-10",
+                          hoveredIndex === index ? "text-black" : (currentScrollY === 0 ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium")
                         )}
                       >
                         <span>{item.title}</span>
                         <FiChevronDown
                           className={clsx(
                             "transition-transform duration-300 group-hover:rotate-180 transition-colors duration-300",
-                            hoveredIndex === index ? "text-black" : "text-blue-50"
+                            hoveredIndex === index ? "text-black" : (currentScrollY === 0 ? "text-white" : "text-blue-50")
                           )}
                         />
                       </button>
@@ -582,7 +582,7 @@ const NavBar = () => {
               id="mobile-apply-now"
               title="Apply Now"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-[#dfdff0] flex items-center justify-center gap-1 w-full"
+              containerClass="bg-[#dfdff0] flex items-center justify-center gap-1 w-full [&>span]:font-bold [&>span]:text-sm"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 window.dispatchEvent(new CustomEvent('open-admission-popup'));
