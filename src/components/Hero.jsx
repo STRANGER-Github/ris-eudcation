@@ -16,7 +16,7 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
-  const totalVideos = 1;
+  const totalVideos = 4;
   const nextVdRef = useRef(null);
 
   const handleVideoLoad = () => {
@@ -24,20 +24,18 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    if (loadedVideos >= 1) {
+    if (loadedVideos >= totalVideos - 1) {
       setLoading(false);
     }
   }, [loadedVideos]);
 
   const handleMiniVdClick = () => {
-    // setHasClicked(true);
-    // setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+    setHasClicked(true);
+    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
   };
 
   useGSAP(
     () => {
-      // Disabled video transition
-      /*
       if (hasClicked) {
         gsap.set("#next-video", { visibility: "visible" });
         gsap.to("#next-video", {
@@ -56,7 +54,6 @@ const Hero = () => {
           ease: "power1.inOut",
         });
       }
-      */
     },
     {
       dependencies: [currentIndex],
@@ -102,8 +99,7 @@ const Hero = () => {
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          {/* Mini video preview box disabled */}
-          {/* <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
             <VideoPreview>
               <div
                 onClick={handleMiniVdClick}
@@ -130,11 +126,13 @@ const Hero = () => {
             id="next-video"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
-          /> */}
+          />
 
           {/* Main static video */}
           <video
-            src={getVideoSrc(1)}
+            src={getVideoSrc(
+              currentIndex === totalVideos - 1 ? 1 : currentIndex
+            )}
             autoPlay
             loop
             muted
