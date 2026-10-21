@@ -171,6 +171,20 @@ const NavBar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const [isLightPage, setIsLightPage] = useState(() => {
+    const hash = (window.location.hash || "").toLowerCase();
+    return hash === "#about-ris" || hash === "#/about-ris";
+  });
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = (window.location.hash || "").toLowerCase();
+      setIsLightPage(hash === "#about-ris" || hash === "#/about-ris");
+    };
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+
   // Toggle mobile accordion sections
   const toggleMobileSection = (title) => {
     setMobileActiveSections((prev) => ({
@@ -230,13 +244,29 @@ const NavBar = () => {
           <nav className="flex size-full items-center justify-between p-4">
             {/* Logo and Apply Now button */}
             <div className="flex items-center gap-7">
-              <img src="/img/RIS logo.png" alt="logo" className="w-10" />
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.hash = "";
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="cursor-pointer transition-transform duration-300 hover:scale-110 flex items-center"
+                title="Rahul International School - Home"
+              >
+                <img src="/img/RIS logo.png" alt="logo" className="w-10" />
+              </a>
 
               <Button
                 id="apply-now-button"
                 title="Apply Now"
                 rightIcon={<TiLocationArrow />}
-                containerClass="bg-[#dfdff0] md:flex hidden items-center justify-center gap-1 [&>span]:font-bold [&>span]:text-sm"
+                containerClass={clsx(
+                  "md:flex hidden items-center justify-center gap-1 [&>span]:font-bold [&>span]:text-sm transition-colors duration-300",
+                  isLightPage && currentScrollY === 0
+                    ? "bg-black text-white hover:bg-neutral-800"
+                    : "bg-[#dfdff0] text-black"
+                )}
                 onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
               />
             </div>
@@ -250,7 +280,10 @@ const NavBar = () => {
               >
                 {/* Sliding Background Pill */}
                 <div
-                  className="absolute bg-blue-50 rounded-full transition-all duration-300 ease-out pointer-events-none z-0"
+                  className={clsx(
+                    "absolute rounded-full transition-all duration-300 ease-out pointer-events-none z-0",
+                    isLightPage && currentScrollY === 0 ? "bg-black/10" : "bg-blue-50"
+                  )}
                   style={{
                     left: `${pillStyle.left}px`,
                     width: `${pillStyle.width}px`,
@@ -269,7 +302,13 @@ const NavBar = () => {
                         onMouseEnter={(e) => handleMouseEnter(e, index)}
                         className={clsx(
                           "relative ms-6 px-4 py-2 rounded-full font-general text-sm uppercase transition-all duration-300 cursor-pointer inline-flex items-center z-10",
-                          hoveredIndex === index ? "text-black animate-none" : (currentScrollY === 0 ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium")
+                          hoveredIndex === index
+                            ? "text-black animate-none"
+                            : currentScrollY === 0
+                            ? isLightPage
+                              ? "text-black font-bold"
+                              : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold"
+                            : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium"
                         )}
                       >
                         {item.title}
@@ -289,14 +328,26 @@ const NavBar = () => {
                       <button
                         className={clsx(
                           "relative ms-6 px-4 py-2 rounded-full font-general text-sm uppercase transition-all duration-300 cursor-pointer flex items-center gap-1 focus:outline-none z-10",
-                          hoveredIndex === index ? "text-black" : (currentScrollY === 0 ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold" : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium")
+                          hoveredIndex === index
+                            ? "text-black"
+                            : currentScrollY === 0
+                            ? isLightPage
+                              ? "text-black font-bold"
+                              : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-bold"
+                            : "text-blue-50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] font-medium"
                         )}
                       >
                         <span>{item.title}</span>
                         <FiChevronDown
                           className={clsx(
                             "transition-transform duration-300 group-hover:rotate-180 transition-colors duration-300",
-                            hoveredIndex === index ? "text-black" : (currentScrollY === 0 ? "text-white" : "text-blue-50")
+                            hoveredIndex === index
+                              ? "text-black"
+                              : currentScrollY === 0
+                              ? isLightPage
+                                ? "text-black"
+                                : "text-white"
+                              : "text-blue-50"
                           )}
                         />
                       </button>
@@ -402,6 +453,7 @@ const NavBar = () => {
                     key={bar}
                     className={clsx("indicator-line", {
                       active: isIndicatorActive,
+                      "!bg-black": isLightPage && currentScrollY === 0,
                     })}
                     style={{
                       animationDelay: `${bar * 0.1}s`,
@@ -413,7 +465,10 @@ const NavBar = () => {
               {/* Mobile Hamburger Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="md:hidden ml-6 text-blue-50 p-2 focus:outline-none hover:text-violet-300 transition-colors duration-200"
+                className={clsx(
+                  "md:hidden ml-6 p-2 focus:outline-none hover:text-violet-500 transition-colors duration-200",
+                  isLightPage && currentScrollY === 0 ? "text-black" : "text-blue-50"
+                )}
               >
                 <FiMenu className="size-6" />
               </button>
@@ -440,7 +495,18 @@ const NavBar = () => {
         <div className="flex flex-col h-full overflow-y-auto pr-1">
           {/* Drawer Header */}
           <div className="flex items-center justify-between pb-6 border-b border-white/10">
-            <img src="/img/RIS logo 10x10.png" alt="logo" className="w-8" />
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.hash = "";
+                setIsMobileMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="cursor-pointer"
+            >
+              <img src="/img/RIS logo 10x10.png" alt="logo" className="w-8" />
+            </a>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-white p-2 focus:outline-none hover:text-violet-300 transition-colors"

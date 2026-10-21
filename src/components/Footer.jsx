@@ -8,11 +8,22 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-start gap-10 w-full">
         {/* Logo and Contact Column */}
         <div className="md:w-1/4 flex flex-col items-start">
-          <img
-            src="/img/RIS logo 10x10.png"
-            alt="RIS Logo"
-            className="h-48 md:h-[250px] w-auto object-contain select-none mb-3"
-          />
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.hash = "";
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="cursor-pointer transition-transform duration-300 hover:scale-105"
+            title="Rahul International School - Home"
+          >
+            <img
+              src="/img/RIS logo 10x10.png"
+              alt="RIS Logo"
+              className="h-48 md:h-[250px] w-auto object-contain select-none mb-3"
+            />
+          </a>
 
           {/* Contact Details */}
           <div className="space-y-2.5 font-general text-[12px] text-black font-semibold mt-3">
