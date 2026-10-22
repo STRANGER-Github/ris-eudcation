@@ -116,6 +116,41 @@ const EditorialPrincipleCard = ({ title, description, icon: Icon }) => {
 
 const AboutRis = () => {
   const containerRef = useRef(null);
+  const rightContainerRef = useRef(null);
+  const [paraHeight, setParaHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (rightContainerRef.current && window.innerWidth >= 1024) {
+        const measuredHeight = rightContainerRef.current.offsetHeight;
+        if (measuredHeight > 50) {
+          setParaHeight(measuredHeight);
+        }
+      } else {
+        setParaHeight(0);
+      }
+    };
+
+    updateHeight();
+
+    if (document.fonts) {
+      document.fonts.ready.then(updateHeight);
+    }
+
+    const observer = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    if (rightContainerRef.current) {
+      observer.observe(rightContainerRef.current);
+    }
+
+    window.addEventListener("resize", updateHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
 
   const guidingPrinciples = [
     {
@@ -158,7 +193,7 @@ const AboutRis = () => {
 
   useGSAP(
     () => {
-      // Hero elements reveal
+      // Hero elements reveal (including logo & overview cards)
       gsap.fromTo(
         ".hero-reveal",
         { opacity: 0, y: 35 },
@@ -168,25 +203,6 @@ const AboutRis = () => {
           duration: 0.9,
           stagger: 0.15,
           ease: "power3.out",
-          clearProps: "all",
-        }
-      );
-
-      // Overview cards reveal on scroll
-      gsap.fromTo(
-        ".overview-card",
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#institutional-overview",
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
           clearProps: "all",
         }
       );
@@ -229,10 +245,10 @@ const AboutRis = () => {
         }
       );
 
-      // If page was refreshed while scrolled down, ensure cards already in view are immediately visible
+      // If page was refreshed while scrolled down, ensure elements already in view are immediately visible
       const guaranteeVisibilityOnRefresh = () => {
         document
-          .querySelectorAll(".overview-card, .vision-mission-box, .principle-item")
+          .querySelectorAll(".hero-reveal, .vision-mission-box, .principle-item")
           .forEach((el) => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight * 0.95) {
@@ -257,75 +273,49 @@ const AboutRis = () => {
       className="relative min-h-screen w-screen overflow-x-hidden selection:bg-violet-600 selection:text-white"
     >
       {/* =========================================================================
-          PART 1: HERO HEADER (Iconic Zentry Light Luxury Aesthetic)
+          PART 1: HERO & INSTITUTIONAL OVERVIEW
+          Centered Headline, Transparent Logo on Left, Both Paragraphs on Right horizontally
       ========================================================================== */}
-      <section className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center bg-[#dfdff0] px-6 pt-36 pb-20 text-center sm:px-10 lg:px-20 text-black overflow-hidden">
+      <section className="relative z-10 flex min-h-[85vh] flex-col items-center justify-center bg-[#dfdff0] px-6 pt-36 pb-24 text-center sm:px-10 lg:px-20 text-black overflow-hidden border-b border-neutral-300/40">
         {/* Subtle radial ambient wash */}
         <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 size-[650px] rounded-full bg-violet-400/15 blur-[160px]" />
 
-        {/* Monumental Headline: ABOUT RIS (Matching Image 2 style) */}
+        {/* Monumental Headline: ABOUT RIS in Centre */}
         <div className="hero-reveal w-full max-w-7xl">
           <AnimatedTitle
             title="AB<b>O</b>UT R<b>I</b>S"
-            containerClass="!text-black text-center !text-6xl sm:!text-8xl md:!text-9xl lg:!text-[12vw] !leading-[0.8] tracking-tight uppercase"
+            containerClass="!text-black text-center !text-6xl sm:!text-8xl md:!text-9xl lg:!text-[11vw] !leading-[0.8] tracking-tight uppercase"
           />
-        </div>
-
-        {/* 3D Floating Official Logo Emblem (Vibrant Violet Anchor matching Image 2) */}
-        <div className="hero-reveal relative mt-8 sm:mt-12 w-full max-w-md sm:max-w-lg">
-          <BentoTilt className="relative w-full">
-            <div className="group relative flex flex-col items-center justify-center rounded-[32px] border border-violet-500/20 bg-gradient-to-br from-[#5542ff] via-[#4d32f5] to-[#391fe0] p-8 sm:p-12 text-white shadow-[0_25px_60px_rgba(85,66,255,0.3)] transition-all duration-700 hover:shadow-[0_35px_80px_rgba(85,66,255,0.45)]">
-              {/* Outer delicate pulse border */}
-              <div className="pointer-events-none absolute inset-0 -m-3 rounded-[38px] border border-violet-400/25 animate-pulse" />
-
-              {/* RIS Official Logo Image */}
-              <div className="relative size-32 sm:size-40 md:size-44 flex items-center justify-center">
-                <img
-                  src="/img/RIS logo 10x10.png"
-                  alt="RIS Logo"
-                  className="size-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              {/* Institutional Motto Pill */}
-              <div className="relative z-10 mt-6 inline-flex items-center gap-2 rounded-full border border-yellow-300/40 bg-black/40 px-5 py-1.5 backdrop-blur-md shadow-md">
-                <span className="font-zentry text-sm font-bold uppercase tracking-wider text-yellow-300">
-                  ‘Be The Best’
-                </span>
-                <span className="text-white/40 text-xs">•</span>
-                <span className="font-general text-xs uppercase tracking-widest text-blue-50/90">
-                  Rahul Education Initiative
-                </span>
-              </div>
-            </div>
-          </BentoTilt>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          PART 2: INSTITUTIONAL OVERVIEW (Clean, Prestigious Light Editorial Luxury)
-      ========================================================================== */}
-      <section
-        id="institutional-overview"
-        className="relative z-10 bg-[#dfdff0] py-24 px-6 sm:px-10 lg:px-20 text-black border-b border-neutral-300/40"
-      >
-        <div className="mx-auto max-w-7xl">
-          {/* Section Sub-heading */}
-          <div className="mb-14 text-center">
-            <span className="font-general text-xs uppercase tracking-[0.25em] text-violet-700 font-semibold block mb-2">
-              Institutional Overview
+          <div className="mt-4 sm:mt-6 text-center">
+            <span className="font-general text-xs sm:text-sm uppercase tracking-[0.25em] text-violet-700 font-semibold">
+              Institutional Overview &bull; Multi-Faceted Holistic Development
             </span>
-            <h2 className="special-font font-zentry text-3xl sm:text-5xl font-black uppercase text-neutral-900 tracking-wide">
-              MULTI-FACETED HOL<b>I</b>STIC DEVEL<b>O</b>PMENT
-            </h2>
+          </div>
+        </div>
+
+        {/* Main Showcase: Logo on Left & Both Paragraphs on Right Horizontally */}
+        <div className="hero-reveal mt-12 sm:mt-16 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-8 lg:gap-10">
+          {/* Left Side: Transparent Official Logo (Height matches the paragraphs on the right) */}
+          <div className="shrink-0 flex items-center justify-center">
+            <BentoTilt className="flex items-center justify-center">
+              <img
+                src="/img/RIS-logooo.png"
+                alt="RIS Logo"
+                style={paraHeight > 0 ? { height: `${paraHeight}px` } : undefined}
+                className="w-auto lg:h-[260px] max-h-[320px] object-contain filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.12)] transition-transform duration-500 hover:scale-105 max-lg:h-44 sm:max-lg:h-52 cursor-pointer select-none"
+              />
+            </BentoTilt>
           </div>
 
-          {/* Two-Column Editorial Presentation */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {/* Column 1: Foundation & Infrastructure */}
+          {/* Right Side: Both Paragraphs horizontally */}
+          <div
+            ref={rightContainerRef}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 items-stretch text-left"
+          >
+            {/* Paragraph 1 Card */}
             <BentoTilt className="h-full">
-              <div className="overview-card flex h-full flex-col justify-center rounded-3xl border border-black/10 bg-white/90 p-8 sm:p-12 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-500 hover:border-violet-400 hover:shadow-[0_20px_50px_rgba(85,66,255,0.1)]">
-                <p className="font-circular-web text-base sm:text-lg leading-relaxed text-neutral-800 font-medium">
+              <div className="overview-card flex h-full flex-col justify-center rounded-3xl border border-black/10 bg-white/90 p-7 sm:p-8 lg:p-9 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-500 hover:border-violet-400 hover:shadow-[0_20px_50px_rgba(85,66,255,0.1)]">
+                <p className="font-circular-web text-sm sm:text-base lg:text-[15px] xl:text-base leading-relaxed text-neutral-800 font-medium">
                   RIS is an initiative by Rahul Education, and was founded to
                   encourage every learner to ‘Be The Best.’ We provide quality
                   education and focus on multi-faceted holistic development,
@@ -338,10 +328,10 @@ const AboutRis = () => {
               </div>
             </BentoTilt>
 
-            {/* Column 2: Staff & Academic Excellence */}
+            {/* Paragraph 2 Card */}
             <BentoTilt className="h-full">
-              <div className="overview-card flex h-full flex-col justify-center rounded-3xl border border-black/10 bg-white/90 p-8 sm:p-12 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-500 hover:border-violet-400 hover:shadow-[0_20px_50px_rgba(85,66,255,0.1)]">
-                <p className="font-circular-web text-base sm:text-lg leading-relaxed text-neutral-800 font-medium">
+              <div className="overview-card flex h-full flex-col justify-center rounded-3xl border border-black/10 bg-white/90 p-7 sm:p-8 lg:p-9 shadow-[0_15px_35px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-500 hover:border-violet-400 hover:shadow-[0_20px_50px_rgba(85,66,255,0.1)]">
+                <p className="font-circular-web text-sm sm:text-base lg:text-[15px] xl:text-base leading-relaxed text-neutral-800 font-medium">
                   Our highly experienced staff proudly reflects our shared
                   vision of all-around academic excellence, necessary to ensure
                   the individual success of every learner. While we focus on

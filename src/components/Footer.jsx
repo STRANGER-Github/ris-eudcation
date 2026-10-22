@@ -62,10 +62,10 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#management-desk"
+                  href="#our-management"
                   className="font-circular-web text-[15px] xl:text-[16px] font-medium text-black transition-all duration-300 hover:bg-black hover:text-[#5542ff] hover:-rotate-[2deg] hover:scale-105 inline-flex items-center px-2.5 py-0.5 -ml-2.5 rounded-md w-fit"
                 >
-                  Management Desk
+                  Our Management
                 </a>
               </li>
               <li>

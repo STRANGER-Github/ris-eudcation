@@ -172,17 +172,42 @@ const NavBar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const [isLightPage, setIsLightPage] = useState(() => {
+    if (typeof window === "undefined") return false;
     const hash = (window.location.hash || "").toLowerCase();
-    return hash === "#about-ris" || hash === "#/about-ris";
+    return (
+      hash === "#about-ris" ||
+      hash === "#/about-ris" ||
+      hash === "#our-management" ||
+      hash === "#/our-management" ||
+      hash === "#management-desk" ||
+      hash === "#/management-desk" ||
+      Boolean(document.getElementById("about-ris-page")) ||
+      Boolean(document.getElementById("our-management-page"))
+    );
   });
 
   useEffect(() => {
     const handleHash = () => {
       const hash = (window.location.hash || "").toLowerCase();
-      setIsLightPage(hash === "#about-ris" || hash === "#/about-ris");
+      setIsLightPage(
+        hash === "#about-ris" ||
+        hash === "#/about-ris" ||
+        hash === "#our-management" ||
+        hash === "#/our-management" ||
+        hash === "#management-desk" ||
+        hash === "#/management-desk" ||
+        Boolean(document.getElementById("about-ris-page")) ||
+        Boolean(document.getElementById("our-management-page"))
+      );
     };
+
+    handleHash();
     window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    window.addEventListener("popstate", handleHash);
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      window.removeEventListener("popstate", handleHash);
+    };
   }, []);
 
   // Toggle mobile accordion sections
@@ -262,10 +287,10 @@ const NavBar = () => {
                 title="Apply Now"
                 rightIcon={<TiLocationArrow />}
                 containerClass={clsx(
-                  "md:flex hidden items-center justify-center gap-1 [&>span]:font-bold [&>span]:text-sm transition-colors duration-300",
+                  "md:flex hidden items-center justify-center gap-1.5 px-5 py-2.5 sm:px-6 [&>span]:font-bold [&>span]:text-sm transition-all duration-300",
                   isLightPage && currentScrollY === 0
-                    ? "bg-black text-white hover:bg-neutral-800"
-                    : "bg-[#dfdff0] text-black"
+                    ? "!bg-black !text-white hover:!bg-neutral-800 shadow-md border border-black/10"
+                    : "!bg-white !text-black hover:!bg-neutral-200 shadow-sm border border-black/5"
                 )}
                 onClick={() => window.dispatchEvent(new CustomEvent('open-admission-popup'))}
               />
