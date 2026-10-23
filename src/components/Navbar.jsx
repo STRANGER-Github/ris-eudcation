@@ -181,8 +181,28 @@ const NavBar = () => {
       hash === "#/our-management" ||
       hash === "#management-desk" ||
       hash === "#/management-desk" ||
+      hash === "#about-rahul-education" ||
+      hash === "#/about-rahul-education" ||
+      hash === "#rahul-education" ||
+      hash === "#/rahul-education" ||
+      hash === "#directors-desk" ||
+      hash === "#/directors-desk" ||
+      hash === "#director-desk" ||
+      hash === "#/director-desk" ||
+      hash === "#our-advisory-panel" ||
+      hash === "#/our-advisory-panel" ||
+      hash === "#advisory-panel" ||
+      hash === "#/advisory-panel" ||
+      hash === "#affiliations-collaborations" ||
+      hash === "#/affiliations-collaborations" ||
+      hash === "#affiliations" ||
+      hash === "#/affiliations" ||
       Boolean(document.getElementById("about-ris-page")) ||
-      Boolean(document.getElementById("our-management-page"))
+      Boolean(document.getElementById("our-management-page")) ||
+      Boolean(document.getElementById("about-rahul-education-page")) ||
+      Boolean(document.getElementById("directors-desk-page")) ||
+      Boolean(document.getElementById("our-advisory-panel-page")) ||
+      Boolean(document.getElementById("affiliations-collaborations-page"))
     );
   });
 
@@ -196,8 +216,28 @@ const NavBar = () => {
         hash === "#/our-management" ||
         hash === "#management-desk" ||
         hash === "#/management-desk" ||
+        hash === "#about-rahul-education" ||
+        hash === "#/about-rahul-education" ||
+        hash === "#rahul-education" ||
+        hash === "#/rahul-education" ||
+        hash === "#directors-desk" ||
+        hash === "#/directors-desk" ||
+        hash === "#director-desk" ||
+        hash === "#/director-desk" ||
+        hash === "#our-advisory-panel" ||
+        hash === "#/our-advisory-panel" ||
+        hash === "#advisory-panel" ||
+        hash === "#/advisory-panel" ||
+        hash === "#affiliations-collaborations" ||
+        hash === "#/affiliations-collaborations" ||
+        hash === "#affiliations" ||
+        hash === "#/affiliations" ||
         Boolean(document.getElementById("about-ris-page")) ||
-        Boolean(document.getElementById("our-management-page"))
+        Boolean(document.getElementById("our-management-page")) ||
+        Boolean(document.getElementById("about-rahul-education-page")) ||
+        Boolean(document.getElementById("directors-desk-page")) ||
+        Boolean(document.getElementById("our-advisory-panel-page")) ||
+        Boolean(document.getElementById("affiliations-collaborations-page"))
       );
     };
 

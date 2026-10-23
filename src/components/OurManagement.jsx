@@ -72,8 +72,7 @@ const LeaderShowcaseCard = ({
 
               {/* Status Badge */}
               {badge && (
-                <div className="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-yellow-300/30 bg-black/60 px-3.5 py-1 text-xs font-semibold text-yellow-300 backdrop-blur-md shadow-md">
-                  <FaAward className="text-yellow-400 text-xs" />
+                <div className="absolute top-4 left-4 z-10 rounded-md border border-white/10 bg-black/80 px-3 py-1 font-general text-[11px] font-semibold uppercase tracking-wider text-yellow-300 backdrop-blur-md shadow-md">
                   <span>{badge}</span>
                 </div>
               )}
@@ -272,22 +271,18 @@ const OurManagement = () => {
 
       // Management cards scroll reveal
       gsap.utils.toArray(".management-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-            clearProps: "all",
-          }
-        );
+        gsap.from(card, {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            once: true,
+          },
+          clearProps: "transform",
+        });
       });
 
       // Quick-jump bar reveal
@@ -336,7 +331,7 @@ const OurManagement = () => {
     <div
       ref={containerRef}
       id="our-management-page"
-      className="relative min-h-screen w-screen overflow-x-hidden bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
+      className="relative flex-1 w-full overflow-x-hidden bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
     >
       {/* =========================================================================
           HERO SECTION: Monumental Headline & Quick Navigation Pills
