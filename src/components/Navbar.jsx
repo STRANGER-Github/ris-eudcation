@@ -197,12 +197,21 @@ const NavBar = () => {
       hash === "#/affiliations-collaborations" ||
       hash === "#affiliations" ||
       hash === "#/affiliations" ||
+      hash === "#cbse-mumbai-mira-road" ||
+      hash === "#/cbse-mumbai-mira-road" ||
+      hash === "#mira-road-cbse" ||
+      hash === "#/mira-road-cbse" ||
+      hash === "#mira-road" ||
+      hash === "#/mira-road" ||
+      hash === "#campus-mira-road" ||
+      hash === "#/campus-mira-road" ||
       Boolean(document.getElementById("about-ris-page")) ||
       Boolean(document.getElementById("our-management-page")) ||
       Boolean(document.getElementById("about-rahul-education-page")) ||
       Boolean(document.getElementById("directors-desk-page")) ||
       Boolean(document.getElementById("our-advisory-panel-page")) ||
-      Boolean(document.getElementById("affiliations-collaborations-page"))
+      Boolean(document.getElementById("affiliations-collaborations-page")) ||
+      Boolean(document.getElementById("mira-road-cbse-page"))
     );
   });
 
@@ -232,12 +241,21 @@ const NavBar = () => {
         hash === "#/affiliations-collaborations" ||
         hash === "#affiliations" ||
         hash === "#/affiliations" ||
+        hash === "#cbse-mumbai-mira-road" ||
+        hash === "#/cbse-mumbai-mira-road" ||
+        hash === "#mira-road-cbse" ||
+        hash === "#/mira-road-cbse" ||
+        hash === "#mira-road" ||
+        hash === "#/mira-road" ||
+        hash === "#campus-mira-road" ||
+        hash === "#/campus-mira-road" ||
         Boolean(document.getElementById("about-ris-page")) ||
         Boolean(document.getElementById("our-management-page")) ||
         Boolean(document.getElementById("about-rahul-education-page")) ||
         Boolean(document.getElementById("directors-desk-page")) ||
         Boolean(document.getElementById("our-advisory-panel-page")) ||
-        Boolean(document.getElementById("affiliations-collaborations-page"))
+        Boolean(document.getElementById("affiliations-collaborations-page")) ||
+        Boolean(document.getElementById("mira-road-cbse-page"))
       );
     };
 

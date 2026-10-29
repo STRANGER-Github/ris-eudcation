@@ -6,6 +6,7 @@ import AboutRahulEducation from "./components/AboutRahulEducation";
 import DirectorsDesk from "./components/DirectorsDesk";
 import OurAdvisoryPanel from "./components/OurAdvisoryPanel";
 import AffiliationsCollaborations from "./components/AffiliationsCollaborations";
+import MiraRoadCbse from "./components/MiraRoadCbse";
 import Hero from "./components/Hero";
 import NavBar from "./components/Navbar";
 import Features from "./components/Features";
@@ -59,6 +60,17 @@ function App() {
       hash === "#/collaborations"
     )
       return "affiliations-collaborations";
+    if (
+      hash === "#cbse-mumbai-mira-road" ||
+      hash === "#/cbse-mumbai-mira-road" ||
+      hash === "#mira-road-cbse" ||
+      hash === "#/mira-road-cbse" ||
+      hash === "#mira-road" ||
+      hash === "#/mira-road" ||
+      hash === "#campus-mira-road" ||
+      hash === "#/campus-mira-road"
+    )
+      return "mira-road-cbse";
     return "home";
   });
 
@@ -114,6 +126,18 @@ function App() {
       ) {
         setCurrentRoute("affiliations-collaborations");
         window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (
+        hash === "#cbse-mumbai-mira-road" ||
+        hash === "#/cbse-mumbai-mira-road" ||
+        hash === "#mira-road-cbse" ||
+        hash === "#/mira-road-cbse" ||
+        hash === "#mira-road" ||
+        hash === "#/mira-road" ||
+        hash === "#campus-mira-road" ||
+        hash === "#/campus-mira-road"
+      ) {
+        setCurrentRoute("mira-road-cbse");
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else if (!hash || hash === "#" || hash === "#home" || hash === "#/home") {
         setCurrentRoute("home");
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -125,7 +149,8 @@ function App() {
           currentRoute === "about-rahul-education" ||
           currentRoute === "directors-desk" ||
           currentRoute === "our-advisory-panel" ||
-          currentRoute === "affiliations-collaborations"
+          currentRoute === "affiliations-collaborations" ||
+          currentRoute === "mira-road-cbse"
         ) {
           setCurrentRoute("home");
           setTimeout(() => {
@@ -143,7 +168,7 @@ function App() {
   }, [currentRoute]);
 
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden flex flex-col justify-between">
+    <main className="relative min-h-screen w-full flex flex-col justify-between">
       <NavBar />
       {currentRoute === "about-ris" ? (
         <AboutRis />
@@ -157,6 +182,8 @@ function App() {
         <OurAdvisoryPanel />
       ) : currentRoute === "affiliations-collaborations" ? (
         <AffiliationsCollaborations />
+      ) : currentRoute === "mira-road-cbse" ? (
+        <MiraRoadCbse />
       ) : (
         <>
           <Hero />

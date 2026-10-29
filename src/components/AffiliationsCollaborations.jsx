@@ -156,7 +156,7 @@ const AffiliationsCollaborations = () => {
     <div
       ref={containerRef}
       id="affiliations-collaborations-page"
-      className="relative flex-1 w-full overflow-x-hidden bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
+      className="relative flex-1 w-full bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
     >
       {/* =========================================================================
           HERO SECTION: Single-Line Monumental Headline

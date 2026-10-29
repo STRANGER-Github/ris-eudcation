@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
   width: 100%;
   min-height: 100vh;
@@ -154,8 +155,13 @@ body {
 }
 
 @keyframes float-particle {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(calc(-80px + 160px * var(--tx)), calc(-80px + 160px * var(--ty))); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(calc(-80px + 160px * var(--tx)), calc(-80px + 160px * var(--ty)));
+  }
 }
 
 @keyframes indicator-line {

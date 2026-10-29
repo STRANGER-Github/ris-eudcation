@@ -270,7 +270,7 @@ const AboutRis = () => {
     <div
       ref={containerRef}
       id="about-ris-page"
-      className="relative flex-1 w-full overflow-x-hidden selection:bg-violet-600 selection:text-white"
+      className="relative flex-1 w-full selection:bg-violet-600 selection:text-white"
     >
       {/* =========================================================================
           PART 1: HERO & INSTITUTIONAL OVERVIEW

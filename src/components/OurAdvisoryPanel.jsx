@@ -71,7 +71,7 @@ const OurAdvisoryPanel = () => {
     <div
       ref={containerRef}
       id="our-advisory-panel-page"
-      className="relative flex-1 w-full overflow-x-hidden bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
+      className="relative flex-1 w-full bg-[#dfdff0] selection:bg-violet-600 selection:text-white"
     >
       {/* =========================================================================
           HERO SECTION: Monumental Headline

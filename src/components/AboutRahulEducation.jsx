@@ -184,7 +184,7 @@ const AboutRahulEducation = () => {
     <div
       ref={containerRef}
       id="about-rahul-education-page"
-      className="relative flex-1 w-full overflow-x-hidden bg-[#dfdff0] selection:bg-red-600 selection:text-white"
+      className="relative flex-1 w-full bg-[#dfdff0] selection:bg-red-600 selection:text-white"
     >
       {/* =========================================================================
           HERO SECTION: Monumental Headline & Conglomerate Identity
